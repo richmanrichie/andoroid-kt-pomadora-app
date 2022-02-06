@@ -4,4 +4,5 @@ data class TimeSelected(
     val timeInMilliSeconds: Long,
     val shortBreakInMilliSeconds: Long,
     val longBreakInMilliSeconds: Long,
+    val iterations: Int
 )

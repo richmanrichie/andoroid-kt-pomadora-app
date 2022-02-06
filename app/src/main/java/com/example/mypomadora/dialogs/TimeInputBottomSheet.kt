@@ -49,9 +49,10 @@ class TimeInputBottomSheet(val listener: CallBackListener<TimeSelected?>): Botto
             val longSec = tvHourLongBreak.text.toString()
             val longBreakTime = getMilliSecondsFromSeparatedTime(SeparatedTime(longHours, longMins, longSec))
 
+//            get count
+            val iterations = tvIterations.text.toString()
 
-
-            listener.onSelect(TimeSelected(pomadoraTime, shortBreakTime, longBreakTime))
+            listener.onSelect(TimeSelected(pomadoraTime, shortBreakTime, longBreakTime, iterations.toInt()))
             dismiss()
         }
 

@@ -64,7 +64,15 @@ class MainActivity : AppCompatActivity(), CallBackListener<TimeSelected?> {
     }
 
     override fun onSelect(data: TimeSelected?) {
-        if(data != null) updateGUI(data.timeInMilliSeconds / 1000)
+        if(data != null) {
+            //save the new time
+            sharedPreferences.edit().putLong(POMADORA_TIME, data.timeInMilliSeconds)
+            sharedPreferences.edit().putLong(SHORT_TIME, data.shortBreakInMilliSeconds)
+            sharedPreferences.edit().putLong(LONG_TIME, data.longBreakInMilliSeconds)
+            sharedPreferences.edit().putInt(LONG_TIME, data.iterations)
+
+            updateGUI(data.timeInMilliSeconds / 1000)
+        }
     }
 
     private fun togglePlay() {
@@ -158,6 +166,13 @@ class MainActivity : AppCompatActivity(), CallBackListener<TimeSelected?> {
     private fun finishedCountDown() {
         state = TickStates.STOP
         setupState()
+    }
+
+    companion object {
+        val POMADORA_TIME = "POMADORA_TIME"
+        val SHORT_TIME = "SHORT_TIME"
+        val LONG_TIME = "LONG_TIME"
+        val ITERATIONS = "ITERATIONS"
     }
 
 }
